@@ -6,6 +6,7 @@ import common.Constants;
 import fileio.FileSystem;
 import main.GameDatas;
 import player.Player;
+import player.PlayerFactory;
 
 public class FileReader {
 
@@ -23,7 +24,6 @@ public class FileReader {
     int n = 0, m = 0;
     int numberOfPlayers = 0;
     int numberOfRounds = 0;
-    char[] terrains = new char[Constants.getMaxTerrain()];
     char[] directions = new char[Constants.getMaxMoves()];
     char[][] realm = new char[Constants.getMaxLength()][Constants.getMaxLength()];
     LinkedList<Player> players = new LinkedList<Player>();
@@ -49,8 +49,8 @@ public class FileReader {
         playerType = fs.nextWord();
         xCoord = fs.nextInt();
         yCoord = fs.nextInt();
-        Player tempPlayer = new Player(playerType, 100, 0, xCoord, yCoord);
-        players.add(tempPlayer);
+        PlayerFactory playerFactory = PlayerFactory.getInstance();
+        players.add(playerFactory.createPlayer(playerType, Constants.getFullHp(), 0, xCoord, yCoord, realm[xCoord][yCoord]));
       }
 
       numberOfRounds=fs.nextInt();
