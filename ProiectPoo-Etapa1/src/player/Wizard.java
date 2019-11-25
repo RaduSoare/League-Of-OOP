@@ -31,8 +31,8 @@ public class Wizard extends Player {
   @Override
   public void fight(Pyromancer pyromancer) {
     int enemyMaxHp = PConstants.getPyroHp() + PConstants.getPyroBonusHp() * pyromancer.getLevel();
-    int drain = drainDamage(enemyMaxHp,  pyromancer.getHP(), WConstants.getDrainRModifier());
-    int deflect = deflectDamage(WConstants.getDeflectRModifier());
+    int drain = drainDamage(enemyMaxHp,  pyromancer.getHP(), WConstants.getDrainPModifier());
+    int deflect = deflectDamage(WConstants.getDeflectPModifier());
     int damage = drain + deflect;
     this.setDamageGiven(damage);
   }
@@ -40,8 +40,8 @@ public class Wizard extends Player {
   @Override
   public void fight(Knight knight) {
     int enemyMaxHp = KConstants.getKnightHp() + KConstants.getKnightBonusHp() * knight.getLevel();
-    int drain = drainDamage(enemyMaxHp,  knight.getHP(), WConstants.getDrainRModifier());
-    int deflect = deflectDamage(WConstants.getDeflectRModifier());
+    int drain = drainDamage(enemyMaxHp,  knight.getHP(), WConstants.getDrainKModifier());
+    int deflect = deflectDamage(WConstants.getDeflectKModifier());
     int damage = drain + deflect;
     this.setDamageGiven(damage);
   }

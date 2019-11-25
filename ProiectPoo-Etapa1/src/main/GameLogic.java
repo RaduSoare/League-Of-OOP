@@ -17,7 +17,7 @@ public class GameLogic {
 
     for(int round = 0; round < gameDatas.getNumberOfRounds(); round++) {
       playerMovement.movePlayers(gameDatas, round, map);
-     // System.out.println("RUNDA " + round);
+      System.out.println("RUNDA " + round);
      for(int i = 0; i < gameDatas.getN(); i++) {
        for(int j = 0; j < gameDatas.getM(); j++) {
          // daca exista 2 jucatori pe acelasi teren, acestia se lupta
@@ -34,21 +34,36 @@ public class GameLogic {
                player2 = map[i][j].getPlayersOnTerrain().get(0);
            }
            //DoT
+
            player1.setHP(player1.getHP() - player1.getOvertimeDamage());
-           player1.setOvertimeDuration(player1.getOvertimeDuration() - 1);
+           if(player1.getOvertimeDuration() > 0) {
+             player1.setOvertimeDuration(player1.getOvertimeDuration() - 1);
+           }
+           if(player1.getOvertimeDuration() == 0) {
+             player1.setOvertimeDamage(0);
+             player1.setParalysed(false);
+           }
+
            player2.setHP(player2.getHP() - player2.getOvertimeDamage());
-           player2.setOvertimeDuration(player2.getOvertimeDuration() - 1);
+           if(player2.getOvertimeDuration() > 0) {
+             player2.setOvertimeDuration(player2.getOvertimeDuration() - 1);
+           }
+           if(player2.getOvertimeDuration() == 0) {
+             player2.setOvertimeDamage(0);
+             player2.setParalysed(false);
+           }
 
            if(player1.getHP() > 0 && player2.getHP() > 0) {
-           /*  System.out.println(player1.getType() + ": " + player1.getHP() + " " +
+          /*   System.out.println(player1.getType() + ": " + player1.getHP() + " " +
                  player2.getType() + ": " + player2.getHP() ); */
              player1.fightsWith(player2);
              player2.fightsWith(player1);
              afterFightCalculator.afterFightStatus(player1, player2, map, gameDatas);
-         /*    System.out.println(player1.getType() + ": " + player1.getHP() + " " +
+        /*     System.out.println(player1.getType() + ": " + player1.getHP() + " " +
                  player2.getType() + ": " + player2.getHP() ); */
 
            }
+
 
          }
 
@@ -56,7 +71,9 @@ public class GameLogic {
 
      }
 
+
     }
+
 
 
 

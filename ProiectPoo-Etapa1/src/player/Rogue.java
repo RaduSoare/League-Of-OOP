@@ -37,21 +37,30 @@ public class Rogue extends Player {
 
   @Override
   public void fight(Pyromancer pyromancer) {
+    this.applyParalysis(pyromancer,  RConstants.getParalysisPModifier());
+   // pyromancer.setOvertimeDamage(Math.round(pyromancer.getOvertimeDamage() * RConstants.getParalysisPModifier() ));
+    int damage = getTotalDamage(RConstants.getBackstabPModifier(), RConstants.getParalysisPModifier());
+    this.setHits(getHits() + 1);
 
+    this.setDamageGiven(damage);
   }
 
   @Override
   public void fight(Knight knight) {
+    this.applyParalysis(knight, RConstants.getParalysisKModifier());
+    int damage = getTotalDamage(RConstants.getBackstabKModifier(), RConstants.getParalysisKModifier());
+    this.setHits(getHits() + 1);
 
+    this.setDamageGiven(damage);
   }
 
   @Override
   public void fight(Wizard wizard) {
 
-   this.applyParalysis(wizard);
-   wizard.setOvertimeDamage(Math.round(wizard.getOvertimeDamage() * RConstants.getParalysisWModifier()));
+   this.applyParalysis(wizard, RConstants.getParalysisWModifier());
+   //wizard.setOvertimeDamage(Math.round(wizard.getOvertimeDamage() * RConstants.getParalysisWModifier() ));
    // setez damage-ul luat pentru a putea calcula deflect-ul
-   wizard.setDamageTaken(getBackstabWithoutModifiers() + getParalysisWithoutModifiers());
+   wizard.setDamageTaken(Math.round(getBackstabWithoutModifiers() + getParalysisWithoutModifiers() ));
    int damage = getTotalDamage(RConstants.getBackstabWModifier(), RConstants.getParalysisWModifier());
    this.setHits(getHits() + 1);
 
@@ -60,11 +69,8 @@ public class Rogue extends Player {
 
   @Override
   public void fight(Rogue rogue) {
-    this.applyParalysis(rogue);
-    rogue.setOvertimeDamage(Math.round(rogue.getOvertimeDamage() * RConstants.getParalysisRModifier()));
-    // setez damage-ul luat pentru a putea calcula deflect-ul
-    rogue.setDamageTaken(getBackstabWithoutModifiers() + getParalysisWithoutModifiers());
-
+    this.applyParalysis(rogue, RConstants.getParalysisRModifier());
+    //rogue.setOvertimeDamage(Math.round(rogue.getOvertimeDamage() * RConstants.getParalysisRModifier() ));
     int damage = getTotalDamage(RConstants.getBackstabRModifier(), RConstants.getParalysisRModifier());
     this.setHits(getHits() + 1);
 
@@ -72,26 +78,29 @@ public class Rogue extends Player {
   }
 
 
-  public int getBackstabWithoutModifiers() {
-    return Math.round((RConstants.getBackstabDamage() +
+  public float getBackstabWithoutModifiers() {
+    return (RConstants.getBackstabDamage() +
         RConstants.getBackstabDamageBonus() * this.getLevel()) *
-        criticalDamage(this.getCurrentTerrain()) * landModifier(getCurrentTerrain()));
+        criticalDamage(this.getCurrentTerrain()) * landModifier(getCurrentTerrain());
   }
 
   public int getBackstab(float backstabModifier) {
+   // System.out.println(Math.round(getBackstabWithoutModifiers() * backstabModifier));
     return Math.round(getBackstabWithoutModifiers() * backstabModifier);
   }
 
-  public int getParalysisWithoutModifiers() {
-    return Math.round((RConstants.getParalysisDamage() +
+  public float getParalysisWithoutModifiers() {
+    return (RConstants.getParalysisDamage() +
         RConstants.getBackstabDamageBonus() * this.getLevel()) *
-        landModifier(getCurrentTerrain()));
+        landModifier(getCurrentTerrain());
   }
 
   public int getParalysis(float paralysisModifier) {
+   // System.out.println(Math.round(getParalysisWithoutModifiers() * paralysisModifier));
     return Math.round(getParalysisWithoutModifiers() * paralysisModifier);
   }
-  public int getTotalWithoutModifiers() {
+  public float getTotalWithoutModifiers() {
+   // System.out.println(getBackstabWithoutModifiers() + getParalysisWithoutModifiers());
     return getBackstabWithoutModifiers() + getParalysisWithoutModifiers();
   }
 
@@ -100,15 +109,19 @@ public class Rogue extends Player {
 
   }
 
-  void applyParalysis(Player enemy) {
+  void applyParalysis(Player enemy, float paralysisModifier) {
     if (this.getCurrentTerrain() == 'W') {
       enemy.setParalysed(true);
-      enemy.setOvertimeDamage(RConstants.getParalysisDamage() + (RConstants.getParalysisDamageBonus() * this.getLevel()));
-      enemy.setOvertimeDuration(RConstants.getParalysisOvertime() * 2);
+
+       enemy.setOvertimeDamage(Math.round( (RConstants.getParalysisDamage() + (RConstants.getParalysisDamageBonus() * this.getLevel())) * paralysisModifier * landModifier(getCurrentTerrain())  ));
+       enemy.setOvertimeDuration(RConstants.getParalysisOvertime() * 2);
+
     } else {
       enemy.setParalysed(true);
-      enemy.setOvertimeDamage(RConstants.getParalysisDamage() + (RConstants.getParalysisDamageBonus() * this.getLevel()));
+
+      enemy.setOvertimeDamage(Math.round( (RConstants.getParalysisDamage() + (RConstants.getParalysisDamageBonus() * this.getLevel())) * paralysisModifier * landModifier(getCurrentTerrain())  ));
       enemy.setOvertimeDuration(RConstants.getParalysisOvertime());
+
     }
   }
 

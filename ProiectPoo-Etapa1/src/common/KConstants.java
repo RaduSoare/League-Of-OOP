@@ -6,6 +6,7 @@ public class KConstants {
   static final int EXECUTE_DAMAGE = 200;
   static final int EXECUTE_DAMAGE_BONUS = 30;
   static final float HP_LIMIT = 0.2f;
+  static final float HP_LIMIT_MODIFIER = 0.01f;
   static final float HP_LIMIT_MAX = 0.4f;
   static final int SLAM_DAMAGE = 100;
   static final int SLAM_DAMAGE_BONUS = 40;
@@ -21,6 +22,11 @@ public class KConstants {
   static final float SLAM_K_MODIFIER = 1.2f;
   static final float SLAM_P_MODIFIER = 0.9f;
   static final float SLAM_W_MODIFIER = 1.05f;
+
+
+  public static float getHpLimitModifier() {
+    return HP_LIMIT_MODIFIER;
+  }
   public static int getKnightHp() {
     return KNIGHT_HP;
   }
