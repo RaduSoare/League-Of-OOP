@@ -1,6 +1,7 @@
 package player;
 
-import common.Constants;
+import common.KConstants;
+import common.PConstants;
 import common.RConstants;
 import common.WConstants;
 
@@ -22,8 +23,8 @@ public class PlayerFactory {
     switch(playerType) {
     case "W": return new Wizard(playerType, WConstants.getWizardHp(), xp, x, y, terrain);
     case "R": return new Rogue(playerType, RConstants.getRogueHp(), xp, x, y, terrain);
-    case "K": return new Knight(playerType, Constants.getKnightHp(), xp, x, y, terrain);
-    case "P": return new Pyromancer(playerType, Constants.getPyromancerHp(), xp, x, y, terrain);
+    case "K": return new Knight(playerType, KConstants.getKnightHp(), xp, x, y, terrain);
+    case "P": return new Pyromancer(playerType, PConstants.getPyroHp(), xp, x, y, terrain);
     default: return null;
     }
   }

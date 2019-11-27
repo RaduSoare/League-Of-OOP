@@ -78,7 +78,6 @@ public class Wizard extends Player {
     float percent = WConstants.getDrainPercent() + WConstants.getDrainPercentBonus() * this.getLevel();
     percent = percent * drainModifier * landModifier(getCurrentTerrain());
     int drain = Math.round(percent * baseHp);
-
     return drain;
   }
 

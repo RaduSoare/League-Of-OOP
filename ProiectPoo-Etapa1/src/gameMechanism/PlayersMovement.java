@@ -15,12 +15,16 @@ public class PlayersMovement {
 
         if(gameDatas.getDirections()[i] == 'U') {
            tempPlayer.setxCoordinate(tempPlayer.getxCoordinate() - 1);
+           tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()][tempPlayer.getyCoordinate()].getTerrainType());
         } else if(gameDatas.getDirections()[i] == 'D') {
           tempPlayer.setxCoordinate(tempPlayer.getxCoordinate() + 1);
+          tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()][tempPlayer.getyCoordinate()].getTerrainType());
         } else if(gameDatas.getDirections()[i] == 'L') {
           tempPlayer.setyCoordinate(tempPlayer.getyCoordinate() - 1);
+          tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()][tempPlayer.getyCoordinate()].getTerrainType());
         } else if(gameDatas.getDirections()[i] == 'R') {
           tempPlayer.setyCoordinate(tempPlayer.getyCoordinate() + 1);
+          tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()][tempPlayer.getyCoordinate()].getTerrainType());
         }
       }
 

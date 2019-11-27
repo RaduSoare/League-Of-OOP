@@ -8,14 +8,17 @@ import player.Player;
 public class OutputFinalStats {
 
   public static void showStats(GameDatas gameDatas) {
+    int i = 0;
     for(Player x : gameDatas.getPlayers()) {
       if(x.getHP() > 0) {
-        System.out.println(x.getType() + " " + x.getLevel() + " " + x.getXP() + " " + x.getHP()
+        System.out.println(i + ": " + x.getType() + " " + x.getLevel() + " " + x.getXP() + " " + x.getHP()
          + " " + x.getxCoordinate() + " " + x.getyCoordinate());
       } else {
-        System.out.println(x.getType() + " " + "dead");
+        System.out.println(i + ": " + x.getType() + " " + "dead");
       }
+      i++;
     }
+
   }
 
   public static void writeStatsInFile(String pathIn ,String pathOut, GameDatas gameDatas) {
