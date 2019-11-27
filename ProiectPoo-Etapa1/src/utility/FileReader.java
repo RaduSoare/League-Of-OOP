@@ -20,12 +20,12 @@ public class FileReader {
     this.outputPath = outputPath;
   }
 
-  public GameDatas readFile() {
+  public final GameDatas readFile() {
     int n = 0, m = 0;
     int numberOfPlayers = 0;
     int numberOfRounds = 0;
-    char[] directions = new char[Constants.getMaxMoves()];
-    char[][] realm = new char[Constants.getMaxLength()][Constants.getMaxLength()];
+    char[] directions = new char[Constants.MAX_MOVES];
+    char[][] realm = new char[Constants.MAX_LENGTH][Constants.MAX_LENGTH];
     LinkedList<Player> players = new LinkedList<Player>();
 
     int xCoord = 0, yCoord = 0;
@@ -50,12 +50,13 @@ public class FileReader {
         xCoord = fs.nextInt();
         yCoord = fs.nextInt();
         PlayerFactory playerFactory = PlayerFactory.getInstance();
-        players.add(playerFactory.createPlayer(playerType, Constants.getFullHp(), 0, xCoord, yCoord, realm[xCoord][yCoord]));
+        players.add(playerFactory.createPlayer(playerType, 0, 0, xCoord, yCoord,
+            realm[xCoord][yCoord]));
       }
 
-      numberOfRounds=fs.nextInt();
+      numberOfRounds = fs.nextInt();
       index = 0;
-      for(int i = 0; i < numberOfRounds; i++) {
+      for (int i = 0; i < numberOfRounds; i++) {
         String temp = fs.nextWord();
         for (int j = 0; j < temp.length(); j++) {
           directions[index] = temp.charAt(j);

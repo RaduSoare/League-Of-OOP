@@ -4,28 +4,36 @@ import java.util.LinkedList;
 
 import player.Player;
 
-public class Map {
-
+public final class Map {
+/*
+ * Singleton Pattern pentru crearea hartii.
+ */
   private static Map instance = null;
-  private Map() {}
+  private Map() { }
 
   public static Map getInstance() {
-    if(instance == null) {
+    if (instance == null) {
       instance  = new Map();
     }
     return instance;
   }
+  /*
+   * primeste o matrice reprezentand harta si o lista de jucatori
+   * asgineaza fiecarui teren tipul specificat in input
+   * aseaza jucatorii pe harta
+   */
+  public Terrain[][] createMap(final char[][] realm, final LinkedList<Player> players,
+      final int n, final int m) {
 
-  public Terrain[][] createMap(char[][] realm, LinkedList<Player> players, int N, int M) {
-    Terrain[][] map = new Terrain[N][M];
-    for(int i = 0; i < N; i++) {
-      for(int j = 0; j < M; j++) {
+    Terrain[][] map = new Terrain[n][m];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
         map[i][j] = new Terrain();
         map[i][j].setTerrainType(realm[i][j]);
       }
     }
 
-    for(Player x : players) {
+    for (Player x : players) {
       map[x.getxCoordinate()][x.getyCoordinate()].getPlayersOnTerrain().add(x);
     }
     return map;

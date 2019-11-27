@@ -14,23 +14,23 @@ public class Terrain {
     this.playersOnTerrain = new LinkedList<Player>();
   }
 
-  public Terrain(char terrainType, LinkedList<Player> playersOnTerrain) {
+  public Terrain(final char terrainType, final LinkedList<Player> playersOnTerrain) {
     super();
     this.terrainType = terrainType;
     this.playersOnTerrain = playersOnTerrain;
   }
 
-  public LinkedList<Player> getPlayersOnTerrain() {
+  public final LinkedList<Player> getPlayersOnTerrain() {
     return playersOnTerrain;
   }
 
-  public void setPlayersOnTerrain(LinkedList<Player> playersOnTerrain) {
+  public final void setPlayersOnTerrain(final LinkedList<Player> playersOnTerrain) {
     this.playersOnTerrain = playersOnTerrain;
   }
-  public void setTerrainType(char terrainType) {
+  public final void setTerrainType(final char terrainType) {
     this.terrainType = terrainType;
   }
-  public char getTerrainType() {
+  public final char getTerrainType() {
     return terrainType;
   }
 

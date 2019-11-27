@@ -5,20 +5,20 @@ import java.util.LinkedList;
 import player.Player;
 
 public class GameDatas {
-  private final int N;
-  private final int M;
+  private final int n;
+  private final int m;
   private final char[][] realm;
   private final int numberOfPlayers;
   private LinkedList<Player> players;
   private final int numberOfRounds;
   private final char[] directions;
 
-  public GameDatas(int n, int m, char[][] realm, int numberOfPlayers,
-      LinkedList<Player> players, int numberOfRounds, char[] directions) {
+  public GameDatas(final int n, final int m, final char[][] realm, final int numberOfPlayers,
+      final LinkedList<Player> players, final int numberOfRounds, final char[] directions) {
 
     super();
-    N = n;
-    M = m;
+    this.n = n;
+    this.m = m;
     this.realm = realm;
     this.numberOfPlayers = numberOfPlayers;
     this.players = players;
@@ -26,44 +26,36 @@ public class GameDatas {
     this.directions = directions;
   }
 
-  public char[][] getRealm() {
+  public final char[][] getRealm() {
     return realm;
   }
 
-  public LinkedList<Player> getPlayers() {
+  public final LinkedList<Player> getPlayers() {
     return players;
   }
 
-  public void setPlayers(LinkedList<Player> players) {
+  public final void setPlayers(final LinkedList<Player> players) {
     this.players = players;
   }
 
-  public int getN() {
-    return N;
+  public final int getN() {
+    return n;
   }
 
-  public int getM() {
-    return M;
+  public final int getM() {
+    return m;
   }
 
-  public int getNumberOfPlayers() {
+  public final int getNumberOfPlayers() {
     return numberOfPlayers;
   }
 
-  public int getNumberOfRounds() {
+  public final int getNumberOfRounds() {
     return numberOfRounds;
   }
 
-  public char[] getDirections() {
+  public final char[] getDirections() {
     return directions;
   }
-
-
-
-
-
-
-
-
 
 }

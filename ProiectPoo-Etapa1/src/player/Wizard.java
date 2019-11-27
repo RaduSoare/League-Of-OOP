@@ -1,89 +1,86 @@
 package player;
 
+import common.Constants;
 import common.KConstants;
 import common.PConstants;
 import common.RConstants;
 import common.WConstants;
 
 public class Wizard extends Player {
-  private int damageTaken;
-  public Wizard(String type, int hP, int xP, int xCoordinate, int yCoordinate, char terrain) {
+
+  public Wizard(final String type, final int hP, final int xP, final int xCoordinate,
+      final int yCoordinate, final char terrain) {
     super(type, hP, xP, xCoordinate, yCoordinate, terrain);
-    // TODO Auto-generated constructor stub
-    this.damageTaken = 0;
+
   }
 
   @Override
-  public int getDamageTaken() {
-    return damageTaken;
-  }
-
-  @Override
-  public void setDamageTaken(int damageTaken) {
-    this.damageTaken = damageTaken;
-  }
-
-  @Override
-  public void fightsWith(Player player) {
+  public final void fightsWith(final Player player) {
     player.fight(this);
   }
 
   @Override
-  public void fight(Pyromancer pyromancer) {
-    int enemyMaxHp = PConstants.getPyroHp() + PConstants.getPyroBonusHp() * pyromancer.getLevel();
-    int drain = drainDamage(enemyMaxHp,  pyromancer.getHP(), WConstants.getDrainPModifier());
-    int deflect = deflectDamage(WConstants.getDeflectPModifier());
+  public final void fight(final Pyromancer pyromancer) {
+
+    int enemyMaxHp = PConstants.PYRO_HP + PConstants.PYRO_BONUS_HP * pyromancer.getLevel();
+    int drain = drainDamage(enemyMaxHp,  pyromancer.getHP(), WConstants.DRAIN_P_MODIFIER);
+    int deflect = deflectDamage(WConstants.DEFLECT_P_MODIFIER);
     int damage = drain + deflect;
     this.setDamageGiven(damage);
   }
 
   @Override
-  public void fight(Knight knight) {
-    int enemyMaxHp = KConstants.getKnightHp() + KConstants.getKnightBonusHp() * knight.getLevel();
-    int drain = drainDamage(enemyMaxHp,  knight.getHP(), WConstants.getDrainKModifier());
-    int deflect = deflectDamage(WConstants.getDeflectKModifier());
+  public final void fight(final Knight knight) {
+
+    int enemyMaxHp = KConstants.KNIGHT_HP + KConstants.KNIGHT_BONUS_HP * knight.getLevel();
+    int drain = drainDamage(enemyMaxHp,  knight.getHP(), WConstants.DRAIN_K_MODIFIER);
+    int deflect = deflectDamage(WConstants.DEFLECT_K_MODIFIER);
     int damage = drain + deflect;
     this.setDamageGiven(damage);
   }
 
   @Override
-  public void fight(Wizard wizard) {
-    int enemyMaxHp = WConstants.getWizardHp() + WConstants.getWizardBonusHp() * wizard.getLevel();
-    int drain = drainDamage(enemyMaxHp, wizard.getHP(), WConstants.getDrainWModifier());
-    //int deflect = deflectDamage(WConstants.getDeflectWModifier());
+  public final void fight(final Wizard wizard) {
+
+    int enemyMaxHp = WConstants.WIZARD_HP + WConstants.WIZARD_BONUS_HP * wizard.getLevel();
+    int drain = drainDamage(enemyMaxHp, wizard.getHP(), WConstants.DRAIN_W_MODIFIER);
     int deflect = 0;
     int damage = drain + deflect;
     this.setDamageGiven(damage);
   }
 
   @Override
-  public void fight(Rogue rogue) {
-    int enemyMaxHp = RConstants.getRogueHp() + RConstants.getRogueBonusHp() * rogue.getLevel();
-    int drain = drainDamage(enemyMaxHp,  rogue.getHP(), WConstants.getDrainRModifier());
-    int deflect = deflectDamage(WConstants.getDeflectRModifier());
+  public final void fight(final Rogue rogue) {
+
+    int enemyMaxHp = RConstants.ROGUE_HP + RConstants.ROGUE_BONUS_HP * rogue.getLevel();
+    int drain = drainDamage(enemyMaxHp,  rogue.getHP(), WConstants.DRAIN_R_MODIFIER);
+    int deflect = deflectDamage(WConstants.DEFLECT_R_MODIFIER);
     int damage = drain + deflect;
     this.setDamageGiven(damage);
 
   }
 
-  public float landModifier(char terrainType) {
+  public final float landModifier(final char terrainType) {
+
     if (terrainType == 'D') {
-      return WConstants.getWizardLandModifier();
+      return WConstants.WIZARD_LAND_MODIFIER;
     }
     return 1f;
   }
 
-  public int drainDamage(int enemyMaxHp, int enemyHp, float drainModifier) {
-    int baseHp = (int) Math.min(0.3f * enemyMaxHp , enemyHp);
-    float percent = WConstants.getDrainPercent() + WConstants.getDrainPercentBonus() * this.getLevel();
+  public final int drainDamage(final int enemyMaxHp, final int enemyHp, final float drainModifier) {
+
+    int baseHp = (int) Math.min(Constants.HP_BONUS_FORMULA * enemyMaxHp, enemyHp);
+    float percent = WConstants.DRAIN_PERCENT + WConstants.DRAIN_PERCENT_BONUS * this.getLevel();
     percent = percent * drainModifier * landModifier(getCurrentTerrain());
     int drain = Math.round(percent * baseHp);
     return drain;
   }
 
-  public int deflectDamage(float deflectModifier) {
-    int deflect = Math.round(this.damageTaken * (WConstants.getDeflectPercent() +
-        WConstants.getDeflectPercentBonus() * this.getLevel()));
+  public final int deflectDamage(final float deflectModifier) {
+
+    int deflect = Math.round(this.getDamageTaken() * (WConstants.DEFLECT_PERCENT
+        + WConstants.DEFLECT_PERCENT_BONUS * this.getLevel()));
     deflect = Math.round(deflect * deflectModifier * landModifier(getCurrentTerrain()));
 
     return deflect;

@@ -2,8 +2,8 @@ package player;
 
 public abstract class Player {
   private String type;
-  private int HP;
-  private int XP;
+  private int hp;
+  private int xp;
   private int level;
   private int xCoordinate;
   private int yCoordinate;
@@ -15,11 +15,12 @@ public abstract class Player {
   private int damageTaken;
 
 
-  public Player(String type, int hP, int xP, int xCoordinate, int yCoordinate, char currentTerrain) {
+  public Player(final String type, final int hP, final int xP, final int xCoordinate,
+      final int yCoordinate, final char currentTerrain) {
     super();
     this.type = type;
-    this.HP = hP;
-    this.XP = xP;
+    this.hp = hP;
+    this.xp = xP;
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
     this.level = 0;
@@ -32,110 +33,110 @@ public abstract class Player {
   }
 
 
-  public int getDamageGiven() {
+  public final int getDamageGiven() {
     return damageGiven;
   }
 
 
-  public void setDamageGiven(int damageGiven) {
+  public final void setDamageGiven(final int damageGiven) {
     this.damageGiven = damageGiven;
   }
 
 
-  public int getDamageTaken() {
+  public final int getDamageTaken() {
     return damageTaken;
   }
 
 
-  public void setDamageTaken(int damageTaken) {
+  public final void setDamageTaken(final int damageTaken) {
     this.damageTaken = damageTaken;
   }
 
 
-  public boolean isParalysed() {
+  public final boolean isParalysed() {
     return isParalysed;
   }
 
 
-  public void setParalysed(boolean isParalysed) {
-    this.isParalysed = isParalysed;
+  public final void setParalysed(final boolean checkIsParalysed) {
+    this.isParalysed = checkIsParalysed;
   }
 
 
-  public char getCurrentTerrain() {
+  public final char getCurrentTerrain() {
     return currentTerrain;
   }
 
 
-  public void setCurrentTerrain(char currentTerrain) {
+  public final void setCurrentTerrain(final char currentTerrain) {
     this.currentTerrain = currentTerrain;
   }
 
 
-  public int getOvertimeDamage() {
+  public final int getOvertimeDamage() {
     return overtimeDamage;
   }
 
 
-  public void setOvertimeDamage(int overtimeDamage) {
+  public final void setOvertimeDamage(final int overtimeDamage) {
     this.overtimeDamage = overtimeDamage;
   }
 
 
-  public int getOvertimeDuration() {
+  public final int getOvertimeDuration() {
     return overtimeDuration;
   }
 
 
-  public void setOvertimeDuration(int overtimeDuration) {
+  public final void setOvertimeDuration(final int overtimeDuration) {
     this.overtimeDuration = overtimeDuration;
   }
 
 
-  public int getLevel() {
+  public final int getLevel() {
     return level;
   }
 
-  public void setLevel(int level) {
+  public final void setLevel(final int level) {
     this.level = level;
   }
-  public String getType() {
+  public final String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public final void setType(final String type) {
     this.type = type;
   }
 
-  public int getHP() {
-    return HP;
+  public final int getHP() {
+    return hp;
   }
 
-  public void setHP(int hP) {
-    HP = hP;
+  public final void setHP(final int hP) {
+    hp = hP;
   }
 
-  public int getXP() {
-    return XP;
+  public final int getXP() {
+    return xp;
   }
 
-  public void setXP(int xP) {
-    XP = xP;
+  public final void setXP(final int xP) {
+    xp = xP;
   }
 
-  public int getxCoordinate() {
+  public final int getxCoordinate() {
     return xCoordinate;
   }
 
-  public void setxCoordinate(int xCoordinate) {
+  public final void setxCoordinate(final int xCoordinate) {
     this.xCoordinate = xCoordinate;
   }
 
-  public int getyCoordinate() {
+  public final int getyCoordinate() {
     return yCoordinate;
   }
 
-  public void setyCoordinate(int yCoordinate) {
+  public final void setyCoordinate(final int yCoordinate) {
     this.yCoordinate = yCoordinate;
   }
 
