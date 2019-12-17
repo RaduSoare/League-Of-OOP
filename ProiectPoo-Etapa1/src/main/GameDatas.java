@@ -1,7 +1,9 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
+import angels.Angel;
 import player.Player;
 
 public class GameDatas {
@@ -12,9 +14,11 @@ public class GameDatas {
   private LinkedList<Player> players;
   private final int numberOfRounds;
   private final char[] directions;
+  private ArrayList<LinkedList<Angel>> angels;
 
   public GameDatas(final int n, final int m, final char[][] realm, final int numberOfPlayers,
-      final LinkedList<Player> players, final int numberOfRounds, final char[] directions) {
+      final LinkedList<Player> players, final int numberOfRounds, final char[] directions,
+      final ArrayList<LinkedList<Angel>> angels) {
 
     super();
     this.n = n;
@@ -24,7 +28,22 @@ public class GameDatas {
     this.players = players;
     this.numberOfRounds = numberOfRounds;
     this.directions = directions;
+    this.angels = angels;
   }
+
+
+
+  public ArrayList<LinkedList<Angel>> getAngels() {
+    return angels;
+  }
+
+
+
+  public void setAngels(ArrayList<LinkedList<Angel>> angels) {
+    this.angels = angels;
+  }
+
+
 
   public final char[][] getRealm() {
     return realm;

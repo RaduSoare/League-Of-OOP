@@ -1,5 +1,7 @@
 package player;
 
+import angels.Angel;
+
 public abstract class Player {
   private String type;
   private int hp;
@@ -13,6 +15,7 @@ public abstract class Player {
   private boolean isParalysed;
   private int damageGiven;
   private int damageTaken;
+  private float angelDamageModifier;
 
 
   public Player(final String type, final int hP, final int xP, final int xCoordinate,
@@ -30,6 +33,17 @@ public abstract class Player {
     this.isParalysed = false;
     this.damageGiven = 0;
     this.damageTaken = 0;
+    this.angelDamageModifier = 1;
+  }
+
+
+  public float getAngelDamageModifier() {
+    return angelDamageModifier;
+  }
+
+
+  public void setAngelDamageModifier(float angelDamageModifier) {
+    this.angelDamageModifier = angelDamageModifier;
   }
 
 
@@ -145,6 +159,10 @@ public abstract class Player {
   public abstract void fight(Knight knight);
   public abstract void fight(Wizard wizard);
   public abstract void fight(Rogue rogue);
+
+  public abstract void getBuff(Angel angel);
+
+
 
 
 }

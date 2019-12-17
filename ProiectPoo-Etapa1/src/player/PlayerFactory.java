@@ -1,9 +1,9 @@
 package player;
 
-import common.KConstants;
-import common.PConstants;
-import common.RConstants;
-import common.WConstants;
+import common.player.KConstants;
+import common.player.PConstants;
+import common.player.RConstants;
+import common.player.WConstants;
 /*
  * Factory Pattern pentru crearea eroilor.
  */

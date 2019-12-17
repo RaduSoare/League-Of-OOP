@@ -1,10 +1,11 @@
 package player;
 
-import common.Constants;
-import common.KConstants;
-import common.PConstants;
-import common.RConstants;
-import common.WConstants;
+import angels.Angel;
+import common.player.Constants;
+import common.player.KConstants;
+import common.player.PConstants;
+import common.player.RConstants;
+import common.player.WConstants;
 
 public class Wizard extends Player {
 
@@ -84,6 +85,12 @@ public class Wizard extends Player {
     deflect = Math.round(deflect * deflectModifier * landModifier(getCurrentTerrain()));
 
     return deflect;
+  }
+
+  @Override
+  public void getBuff(Angel angel) {
+    // TODO Auto-generated method stub
+    angel.buff(this);
   }
 
 }

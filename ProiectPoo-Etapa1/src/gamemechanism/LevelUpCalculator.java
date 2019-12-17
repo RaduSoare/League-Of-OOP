@@ -1,6 +1,6 @@
 package gamemechanism;
 
-import common.Constants;
+import common.player.Constants;
 import player.Player;
 
 public class LevelUpCalculator {
@@ -16,5 +16,17 @@ public class LevelUpCalculator {
       }
     } while (player.getXP() >= xpLevelUp);
 
+  }
+
+  public final int xpForNextLevel(final int oldXp) {
+
+    int tempXp = Constants.LEVEL_STEP;
+    while(true) {
+      if(tempXp < oldXp) {
+        tempXp += Constants.LEVEL_NEXT_STEP;
+      } else {
+        return tempXp;
+      }
+    }
   }
 }

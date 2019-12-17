@@ -1,8 +1,11 @@
 package utility;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-import common.Constants;
+import angels.Angel;
+import angels.AngelFactory;
+import common.player.Constants;
 import fileio.FileSystem;
 import main.GameDatas;
 import player.Player;
@@ -27,6 +30,7 @@ public class FileReader {
     char[] directions = new char[Constants.MAX_MOVES];
     char[][] realm = new char[Constants.MAX_LENGTH][Constants.MAX_LENGTH];
     LinkedList<Player> players = new LinkedList<Player>();
+    ArrayList<LinkedList<Angel>> angels = new ArrayList<LinkedList<Angel>>();
 
     int xCoord = 0, yCoord = 0;
     String playerType;
@@ -65,6 +69,20 @@ public class FileReader {
       }
 
 
+      for(int i = 0; i < numberOfRounds; i++) {
+        LinkedList<Angel> tempListOfAngels = new LinkedList<Angel>();
+        int tempNoOfAngels = fs.nextInt();
+        for(int j = 1; j <= tempNoOfAngels; j++) {
+          String[] angel = fs.nextWord().split(",");
+
+          AngelFactory angelFactory = AngelFactory.getInstance();
+          tempListOfAngels.add(angelFactory.createAngel(Integer.parseInt(angel[1]), Integer.parseInt(angel[2]),
+              angel[0]));
+        }
+        angels.add(i, tempListOfAngels);
+
+      }
+
 
 
     } catch (Exception e1) {
@@ -73,7 +91,8 @@ public class FileReader {
 
 
 
-    return new GameDatas(n, m, realm, numberOfPlayers, players, numberOfRounds, directions);
+    return new GameDatas(n, m, realm, numberOfPlayers, players, numberOfRounds,
+        directions, angels);
   }
 
 }

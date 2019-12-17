@@ -1,6 +1,6 @@
 package gamemechanism;
 
-import common.Constants;
+import common.player.Constants;
 import player.Player;
 
 public class XpCalculator {

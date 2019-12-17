@@ -1,6 +1,7 @@
 package player;
 
-import common.PConstants;
+import angels.Angel;
+import common.player.PConstants;
 
 public class Pyromancer extends Player  {
 
@@ -90,8 +91,14 @@ public class Pyromancer extends Player  {
           * landModifier(getCurrentTerrain()) * igniteModifier);
       enemy.setOvertimeDamage(periodicIgnite);
       enemy.setOvertimeDuration(PConstants.OVERTIME_DURATION);
+
     }
     return ignite;
+  }
+
+  @Override
+  public void getBuff(Angel angel) {
+    angel.buff(this);
   }
 
 

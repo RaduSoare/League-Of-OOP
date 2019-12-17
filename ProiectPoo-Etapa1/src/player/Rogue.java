@@ -1,7 +1,8 @@
 package player;
 
-import common.Constants;
-import common.RConstants;
+import angels.Angel;
+import common.player.Constants;
+import common.player.RConstants;
 
 public class Rogue extends Player {
 
@@ -146,6 +147,12 @@ public class Rogue extends Player {
       return RConstants.CRITICAL_BONUS;
     }
     return 1f;
+  }
+
+  @Override
+  public void getBuff(Angel angel) {
+    // TODO Auto-generated method stub
+    angel.buff(this);
   }
 
 

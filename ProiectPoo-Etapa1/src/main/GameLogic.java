@@ -1,5 +1,6 @@
 package main;
 
+import angels.AngelAction;
 import gamemechanism.AfterFightCalculator;
 import gamemechanism.OvertimeCalculator;
 import gamemechanism.PlayersMovement;
@@ -17,8 +18,10 @@ public class GameLogic {
     PlayersMovement playerMovement = new PlayersMovement();
     AfterFightCalculator afterFightCalculator = new AfterFightCalculator();
     OvertimeCalculator overtimeCalculator = new OvertimeCalculator();
+    AngelAction angelAction = new AngelAction();
 
     for (int round = 0; round < gameDatas.getNumberOfRounds(); round++) {
+      System.out.println("Round number: " + round);
      // se realizeaza miscarea jucatorilor pe harta
      playerMovement.movePlayers(gameDatas, round, map);
 
@@ -45,7 +48,7 @@ public class GameLogic {
            }
 
            if (player1.getHP() > 0 && player2.getHP() > 0) {
-
+             System.out.println(player1.getHP() + " " + player2.getHP());
              player1.fightsWith(player2);
              player2.fightsWith(player1);
              afterFightCalculator.afterFightStatus(player1, player2, map, gameDatas);
@@ -53,6 +56,10 @@ public class GameLogic {
          }
        }
      }
+     //Angel buff
+     angelAction.buffPlayers(gameDatas, round, map);
+
+
     }
   }
 }

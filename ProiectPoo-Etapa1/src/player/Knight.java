@@ -1,9 +1,10 @@
 package player;
 
-import common.KConstants;
-import common.PConstants;
-import common.RConstants;
-import common.WConstants;
+import angels.Angel;
+import common.player.KConstants;
+import common.player.PConstants;
+import common.player.RConstants;
+import common.player.WConstants;
 
 public class Knight extends Player  {
 
@@ -109,6 +110,12 @@ public class Knight extends Player  {
 
     return getExecute(enemylevel, enemyMaxHp, enemyHp, executeModifier)
         + getSlam(enemy, slamModifier);
+  }
+
+  @Override
+  public void getBuff(Angel angel) {
+    // TODO Auto-generated method stub
+    angel.buff(this);
   }
 
 
