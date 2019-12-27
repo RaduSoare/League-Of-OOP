@@ -10,8 +10,8 @@ import common.player.WConstants;
 public class Wizard extends Player {
 
   public Wizard(final String type, final int hP, final int xP, final int xCoordinate,
-      final int yCoordinate, final char terrain) {
-    super(type, hP, xP, xCoordinate, yCoordinate, terrain);
+      final int yCoordinate, final char terrain, final int index) {
+    super(type, hP, xP, xCoordinate, yCoordinate, terrain, index);
 
   }
 
@@ -73,7 +73,11 @@ public class Wizard extends Player {
 
     int baseHp = (int) Math.min(Constants.HP_BONUS_FORMULA * enemyMaxHp, enemyHp);
     float percent = WConstants.DRAIN_PERCENT + WConstants.DRAIN_PERCENT_BONUS * this.getLevel();
-    percent = percent * drainModifier * landModifier(getCurrentTerrain());
+
+    percent = percent
+        * (drainModifier + getStrategyDamageModifier() + getAngelDamageModifier())
+        * landModifier(getCurrentTerrain());
+
     int drain = Math.round(percent * baseHp);
     return drain;
   }
@@ -82,14 +86,18 @@ public class Wizard extends Player {
 
     int deflect = Math.round(this.getDamageTaken() * (WConstants.DEFLECT_PERCENT
         + WConstants.DEFLECT_PERCENT_BONUS * this.getLevel()));
-    deflect = Math.round(deflect * deflectModifier * landModifier(getCurrentTerrain()));
+    deflect = Math.round(deflect
+        * (deflectModifier + getStrategyDamageModifier() + getAngelDamageModifier())
+        * landModifier(getCurrentTerrain()));
 
-    return deflect;
+    //System.out.println((int)(deflect - 0.0001f));
+    //return (int)(deflect - 0.0001f);
+
+   return deflect;
   }
 
   @Override
   public void getBuff(Angel angel) {
-    // TODO Auto-generated method stub
     angel.buff(this);
   }
 

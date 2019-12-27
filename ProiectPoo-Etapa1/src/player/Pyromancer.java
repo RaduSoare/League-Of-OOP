@@ -8,8 +8,8 @@ public class Pyromancer extends Player  {
 
 
   public Pyromancer(final String type, final int hP, final int xP, final int xCoordinate,
-      final int yCoordinate, final char terrain) {
-    super(type, hP, xP, xCoordinate, yCoordinate, terrain);
+      final int yCoordinate, final char terrain, final int index) {
+    super(type, hP, xP, xCoordinate, yCoordinate, terrain, index);
   }
 
   @Override
@@ -65,30 +65,38 @@ public class Pyromancer extends Player  {
 
   public final float getFireblastWithoutModifiers() {
 
-    return (PConstants.FIREBLAST_DAMAGE + PConstants.FIREBLAST_DAMAGE_BONUS
-        * this.getLevel()) * landModifier(getCurrentTerrain());
+    return Math.round((PConstants.FIREBLAST_DAMAGE + PConstants.FIREBLAST_DAMAGE_BONUS
+        * this.getLevel()) * landModifier(getCurrentTerrain()));
   }
 
   public final int getFireblast(final float fireblastModifier) {
 
-    return Math.round(getFireblastWithoutModifiers() * fireblastModifier);
+    return Math.round(getFireblastWithoutModifiers()
+        * (fireblastModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
   }
 
   public final float getIgniteWithoutModifiers() {
 
-    return (PConstants.IGNITE_DAMAGE + PConstants.IGNITE_DAMAGE_BONUS
-        * this.getLevel()) * landModifier(getCurrentTerrain());
+    return Math.round((PConstants.IGNITE_DAMAGE + PConstants.IGNITE_DAMAGE_BONUS
+        * this.getLevel()) * landModifier(getCurrentTerrain()));
   }
 
   public final int getIgnite(final Player enemy, final float igniteModifier) {
 
-    int ignite =  Math.round(getIgniteWithoutModifiers() * igniteModifier);
+    int ignite =  Math.round(getIgniteWithoutModifiers()
+        * (igniteModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
 
     if (enemy.getOvertimeDuration() == 0) {
-
-      int periodicIgnite = Math.round((PConstants.IGNITE_OVERTIME
+      // din etapa 1
+  /*    int periodicIgnite = Math.round((PConstants.IGNITE_OVERTIME
           + PConstants.IGNITE_OVERTIME_BONUS * this.getLevel())
-          * landModifier(getCurrentTerrain()) * igniteModifier);
+          * landModifier(getCurrentTerrain()) * igniteModifier); */
+      int periodicIgniteWithoutModifiers = Math.round((PConstants.IGNITE_OVERTIME
+          + PConstants.IGNITE_OVERTIME_BONUS * this.getLevel())
+          * landModifier(getCurrentTerrain()));
+      int periodicIgnite = Math.round(periodicIgniteWithoutModifiers
+          * (igniteModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
+
       enemy.setOvertimeDamage(periodicIgnite);
       enemy.setOvertimeDuration(PConstants.OVERTIME_DURATION);
 

@@ -1,8 +1,9 @@
 package utility;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
-import fileio.FileSystem;
 import main.GameDatas;
 import player.Player;
 
@@ -17,41 +18,44 @@ public final class OutputFinalStats {
    * pastrat pentru debugging in etapa 2
    */
   public static void showStats(final GameDatas gameDatas) {
-    int i = 0;
+    System.out.println("~~ Results ~~");
+   // int i = 0;
     for (Player x : gameDatas.getPlayers()) {
       if (x.getHP() > 0) {
-        System.out.println(i + ": " + x.getType() + " " + x.getLevel() + " " + x.getXP()
+        System.out.println(x.getType() + " " + x.getLevel() + " " + x.getXP()
         + " " + x.getHP() + " " + x.getxCoordinate() + " " + x.getyCoordinate());
       } else {
-        System.out.println(i + ": " + x.getType() + " " + "dead");
+        System.out.println(x.getType() + " " + "dead");
       }
-      i++;
+     // i++;
     }
 
   }
   /*
    * scrie proprietatile jucatorilor in fisierul de iesire
    */
+
   public static void writeStatsInFile(final String pathIn, final String pathOut,
       final GameDatas gameDatas) {
 
     try {
-      FileSystem fileSystem = new FileSystem(pathIn, pathOut);
+      BufferedWriter writer = new BufferedWriter(new FileWriter(pathOut, true));
+      writer.append("~~ Results ~~");
+      writer.newLine();
       for (Player x : gameDatas.getPlayers()) {
 
         if (x.getHP() > 0) {
           String line = x.getType() + " " + x.getLevel() + " " + x.getXP() + " " + x.getHP()
           + " " + x.getxCoordinate() + " " + x.getyCoordinate();
-          fileSystem.writeWord(line);
-          fileSystem.writeNewLine();
+          writer.append(line);
+          writer.newLine();
         } else {
             String line = x.getType() + " " + "dead";
-            fileSystem.writeWord(line);
-            fileSystem.writeNewLine();
-
+            writer.append(line);
+            writer.newLine();
         }
       }
-      fileSystem.close();
+      writer.close();
     } catch (IOException e) {
         e.printStackTrace();
     }

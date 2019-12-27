@@ -10,8 +10,8 @@ public class Rogue extends Player {
   private float critial;
 
   public Rogue(final String type, final int hP, final int xP, final int xCoordinate,
-      final int yCoordinate, final char terrain) {
-    super(type, hP, xP, xCoordinate, yCoordinate, terrain);
+      final int yCoordinate, final char terrain, final int index) {
+    super(type, hP, xP, xCoordinate, yCoordinate, terrain, index);
     this.hits = 0;
     this.critial = 1f;
   }
@@ -86,7 +86,8 @@ public class Rogue extends Player {
 
   public final int getBackstab(final float backstabModifier) {
 
-    return Math.round(getBackstabWithoutModifiers() * backstabModifier);
+    return Math.round(getBackstabWithoutModifiers()
+        * (backstabModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
   }
 
   public final float getParalysisWithoutModifiers() {
@@ -97,8 +98,10 @@ public class Rogue extends Player {
 
   public final int getParalysis(final float paralysisModifier) {
 
-    return Math.round(getParalysisWithoutModifiers() * paralysisModifier);
+    return Math.round(getParalysisWithoutModifiers()
+        * (paralysisModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
   }
+
   public final float getTotalWithoutModifiers() {
 
     return getBackstabWithoutModifiers() + getParalysisWithoutModifiers();
@@ -115,7 +118,7 @@ public class Rogue extends Player {
     if (this.getCurrentTerrain() == 'W') {
        enemy.setParalysed(true);
        enemy.setOvertimeDamage(Math.round((RConstants.PARALYSIS_DAMAGE
-           + (RConstants.PARALYSIS_DAMAGE_BONUS * this.getLevel())) * paralysisModifier
+           + (RConstants.PARALYSIS_DAMAGE_BONUS * this.getLevel())) * (paralysisModifier + getStrategyDamageModifier())
            * landModifier(getCurrentTerrain())));
        enemy.setOvertimeDuration(RConstants.PARALYSIS_OVERTIME * 2);
 
@@ -123,7 +126,7 @@ public class Rogue extends Player {
       enemy.setParalysed(true);
       enemy.setOvertimeDamage(Math.round((RConstants.PARALYSIS_DAMAGE
           + (RConstants.PARALYSIS_DAMAGE_BONUS * this.getLevel()))
-          * paralysisModifier * landModifier(getCurrentTerrain())));
+          * (paralysisModifier + getStrategyDamageModifier()) * landModifier(getCurrentTerrain())));
       enemy.setOvertimeDuration(RConstants.PARALYSIS_OVERTIME);
     }
   }

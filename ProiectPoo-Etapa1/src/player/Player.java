@@ -1,8 +1,12 @@
 package player;
 
-import angels.Angel;
+import java.util.ArrayList;
 
-public abstract class Player {
+import angels.Angel;
+import observer.Observable;
+import observer.Observer;
+
+public abstract class Player implements Observable {
   private String type;
   private int hp;
   private int xp;
@@ -16,10 +20,14 @@ public abstract class Player {
   private int damageGiven;
   private int damageTaken;
   private float angelDamageModifier;
+  private float strategyDamageModifier;
+  private int index;
+
+  private ArrayList<Observer> observers = new ArrayList<>();
 
 
   public Player(final String type, final int hP, final int xP, final int xCoordinate,
-      final int yCoordinate, final char currentTerrain) {
+      final int yCoordinate, final char currentTerrain, final int index) {
     super();
     this.type = type;
     this.hp = hP;
@@ -33,7 +41,29 @@ public abstract class Player {
     this.isParalysed = false;
     this.damageGiven = 0;
     this.damageTaken = 0;
-    this.angelDamageModifier = 1;
+    this.angelDamageModifier = 0;
+    this.strategyDamageModifier = 0;
+    this.index = index;
+  }
+
+
+  public int getIndex() {
+    return index;
+  }
+
+
+  public void setIndex(int index) {
+    this.index = index;
+  }
+
+
+  public float getStrategyDamageModifier() {
+    return strategyDamageModifier;
+  }
+
+
+  public void setStrategyDamageModifier(float strategyDamageModifier) {
+    this.strategyDamageModifier = strategyDamageModifier;
   }
 
 
@@ -162,7 +192,17 @@ public abstract class Player {
 
   public abstract void getBuff(Angel angel);
 
-
-
+  @Override
+  public void notifyUpdate(Observer observer, String message) {
+    observer.update(message);
+  }
+  @Override
+  public void attach(Observer observer) {
+    observers.add(observer);
+  }
+  @Override
+  public void detach(Observer observer) {
+    observers.remove(observer);
+  }
 
 }

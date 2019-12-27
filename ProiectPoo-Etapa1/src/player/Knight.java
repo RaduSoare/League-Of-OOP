@@ -9,8 +9,8 @@ import common.player.WConstants;
 public class Knight extends Player  {
 
   public Knight(final String type, final int hP, final int xP, final int xCoordinate,
-      final int yCoordinate, final char terrain) {
-    super(type, hP, xP, xCoordinate, yCoordinate, terrain);
+      final int yCoordinate, final char terrain, final int index) {
+    super(type, hP, xP, xCoordinate, yCoordinate, terrain, index);
   }
 
   @Override
@@ -42,7 +42,9 @@ public class Knight extends Player  {
     int maxHp = WConstants.WIZARD_HP + WConstants.WIZARD_BONUS_HP * wizard.getLevel();
     int damage = getTotalDamage(wizard.getLevel(), maxHp, wizard.getHP(),
         KConstants.EXECUTE_W_MODIFIER, wizard, KConstants.SLAM_W_MODIFIER);
-    wizard.setDamageTaken(getExecuteWithoutModifiers(wizard.getLevel(), maxHp, wizard.getHP())
+
+    wizard.setDamageTaken(Math.round((KConstants.EXECUTE_DAMAGE + KConstants.EXECUTE_DAMAGE_BONUS
+        * this.getLevel()) * landModifier(getCurrentTerrain()))
         + getSlamWithoutModifiers(wizard));
     this.setDamageGiven(damage);
 
@@ -88,8 +90,13 @@ public class Knight extends Player  {
   public final int getExecute(final int enemylevel, final int enemyMaxHp, final int enemyHp,
       final float executeModifier) {
 
+    float modifiers = executeModifier + getStrategyDamageModifier() + getAngelDamageModifier();
+    if(executeModifier == 1f) {
+      modifiers = 1f;
+    }
+
     return Math.round(getExecuteWithoutModifiers(enemylevel, enemyMaxHp, enemyHp)
-        * executeModifier);
+        * modifiers);
   }
 
   public final int getSlamWithoutModifiers(final Player enemy) {
@@ -102,7 +109,8 @@ public class Knight extends Player  {
 
   public final int getSlam(final Player enemy, final float slamModifier) {
 
-    return Math.round(getSlamWithoutModifiers(enemy) * slamModifier);
+    return Math.round(getSlamWithoutModifiers(enemy)
+        * (slamModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
   }
 
   public final int getTotalDamage(final int enemylevel, final int enemyMaxHp, final int enemyHp,
@@ -114,7 +122,6 @@ public class Knight extends Player  {
 
   @Override
   public void getBuff(Angel angel) {
-    // TODO Auto-generated method stub
     angel.buff(this);
   }
 

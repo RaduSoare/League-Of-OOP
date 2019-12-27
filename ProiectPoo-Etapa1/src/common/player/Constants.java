@@ -17,4 +17,9 @@ public final class Constants {
   public static final float HP_BONUS_FORMULA = 0.3f;
   public static final int CRITICAL_INTERVAL = 3;
 
+  public static final String PYRO_TYPE = "pyromancer";
+  public static final String WIZARD_TYPE = "wizard";
+  public static final String ROGUE_TYPE = "rogue";
+  public static final String KNIGHT_TYPE = "knight";
+
 }

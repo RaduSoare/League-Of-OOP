@@ -21,13 +21,13 @@ public final class PlayerFactory {
   }
 
   public Player createPlayer(final String playerType, final int hp, final int xp, final int x,
-      final int y, final char terrain) {
+      final int y, final char terrain, final int index) {
 
     switch (playerType) {
-      case "W": return new Wizard(playerType, WConstants.WIZARD_HP, xp, x, y, terrain);
-      case "R": return new Rogue(playerType, RConstants.ROGUE_HP, xp, x, y, terrain);
-      case "K": return new Knight(playerType, KConstants.KNIGHT_HP, xp, x, y, terrain);
-      case "P": return new Pyromancer(playerType, PConstants.PYRO_HP, xp, x, y, terrain);
+      case "W": return new Wizard(playerType, WConstants.WIZARD_HP, xp, x, y, terrain, index);
+      case "R": return new Rogue(playerType, RConstants.ROGUE_HP, xp, x, y, terrain, index);
+      case "K": return new Knight(playerType, KConstants.KNIGHT_HP, xp, x, y, terrain, index);
+      case "P": return new Pyromancer(playerType, PConstants.PYRO_HP, xp, x, y, terrain, index);
       default: return null;
     }
   }

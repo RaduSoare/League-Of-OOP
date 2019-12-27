@@ -25,6 +25,7 @@ public class FileReader {
 
   public final GameDatas readFile() {
     int n = 0, m = 0;
+    int indexPlayer = 0;
     int numberOfPlayers = 0;
     int numberOfRounds = 0;
     char[] directions = new char[Constants.MAX_MOVES];
@@ -50,12 +51,14 @@ public class FileReader {
 
       numberOfPlayers = fs.nextInt();
       for (int i = 0; i < numberOfPlayers; i++) {
+
         playerType = fs.nextWord();
         xCoord = fs.nextInt();
         yCoord = fs.nextInt();
         PlayerFactory playerFactory = PlayerFactory.getInstance();
         players.add(playerFactory.createPlayer(playerType, 0, 0, xCoord, yCoord,
-            realm[xCoord][yCoord]));
+            realm[xCoord][yCoord], indexPlayer));
+        indexPlayer++;
       }
 
       numberOfRounds = fs.nextInt();
