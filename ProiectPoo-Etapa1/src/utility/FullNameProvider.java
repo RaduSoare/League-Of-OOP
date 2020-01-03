@@ -1,9 +1,13 @@
 package utility;
 
-public class FullNameProvider {
+public final class FullNameProvider {
 
-  public static String getFullName(String type) {
-    switch(type) {
+  private FullNameProvider() {
+
+  }
+
+  public static String getFullName(final String type) {
+    switch (type) {
       case "P": return "Pyromancer";
       case "K": return "Knight";
       case "W": return "Wizard";

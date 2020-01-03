@@ -8,9 +8,9 @@ import player.Pyromancer;
 import player.Rogue;
 import player.Wizard;
 
-public class GoodBoy extends Angel {
+public class DamageAngel extends Angel {
 
-  public GoodBoy(final int xCoordinate, final int yCoordinate, final String type) {
+  public DamageAngel(final int xCoordinate, final int yCoordinate, final String type) {
     super(xCoordinate, yCoordinate, type);
 
   }
@@ -21,9 +21,8 @@ public class GoodBoy extends Angel {
       return;
     }
     pyromancer.setAngelDamageModifier(pyromancer.getAngelDamageModifier()
-        + AngelsConstants.GOODBOY_BUFF_DMG_P);
-    pyromancer.setHP(pyromancer.getHP() + AngelsConstants.GOODBOY_BUFF_HP_P);
-    this.notifyUpdate(greatMagician, "GoodBoy helped Pyromancer " + pyromancer.getIndex());
+        + AngelsConstants.DAMAGE_ANGEL_BUFF_P);
+    this.notifyUpdate(greatMagician, "DamageAngel helped Pyromancer " + pyromancer.getIndex());
 
   }
 
@@ -33,10 +32,8 @@ public class GoodBoy extends Angel {
       return;
     }
     knight.setAngelDamageModifier(knight.getAngelDamageModifier()
-        + AngelsConstants.GOODBOY_BUFF_DMG_K);
-    knight.setHP(knight.getHP() + AngelsConstants.GOODBOY_BUFF_HP_K);
-    this.notifyUpdate(greatMagician, "GoodBoy helped Knight " + knight.getIndex());
-
+        + AngelsConstants.DAMAGE_ANGEL_BUFF_K);
+    this.notifyUpdate(greatMagician, "DamageAngel helped Knight " + knight.getIndex());
   }
 
   @Override
@@ -45,9 +42,8 @@ public class GoodBoy extends Angel {
       return;
     }
     wizard.setAngelDamageModifier(wizard.getAngelDamageModifier()
-        + AngelsConstants.GOODBOY_BUFF_DMG_W);
-    wizard.setHP(wizard.getHP() + AngelsConstants.GOODBOY_BUFF_HP_W);
-    this.notifyUpdate(greatMagician, "GoodBoy helped Wizard " + wizard.getIndex());
+        + AngelsConstants.DAMAGE_ANGEL_BUFF_W);
+    this.notifyUpdate(greatMagician, "DamageAngel helped Wizard " + wizard.getIndex());
 
   }
 
@@ -57,10 +53,12 @@ public class GoodBoy extends Angel {
       return;
     }
     rogue.setAngelDamageModifier(rogue.getAngelDamageModifier()
-        + AngelsConstants.GOODBOY_BUFF_DMG_R);
-    rogue.setHP(rogue.getHP() + AngelsConstants.GOODBOY_BUFF_HP_R);
-    this.notifyUpdate(greatMagician, "GoodBoy helped Rogue " + rogue.getIndex());
+        + AngelsConstants.DAMAGE_ANGEL_BUFF_R);
+    this.notifyUpdate(greatMagician, "DamageAngel helped Rogue " + rogue.getIndex());
 
   }
+
+
+
 
 }

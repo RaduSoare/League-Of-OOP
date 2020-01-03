@@ -47,32 +47,32 @@ public abstract class Player implements Observable {
   }
 
 
-  public int getIndex() {
+  public final int getIndex() {
     return index;
   }
 
 
-  public void setIndex(int index) {
+  public final void setIndex(final int index) {
     this.index = index;
   }
 
 
-  public float getStrategyDamageModifier() {
+  public final float getStrategyDamageModifier() {
     return strategyDamageModifier;
   }
 
 
-  public void setStrategyDamageModifier(float strategyDamageModifier) {
+  public final void setStrategyDamageModifier(final float strategyDamageModifier) {
     this.strategyDamageModifier = strategyDamageModifier;
   }
 
 
-  public float getAngelDamageModifier() {
+  public final float getAngelDamageModifier() {
     return angelDamageModifier;
   }
 
 
-  public void setAngelDamageModifier(float angelDamageModifier) {
+  public final void setAngelDamageModifier(final float angelDamageModifier) {
     this.angelDamageModifier = angelDamageModifier;
   }
 
@@ -193,15 +193,15 @@ public abstract class Player implements Observable {
   public abstract void getBuff(Angel angel);
 
   @Override
-  public void notifyUpdate(Observer observer, String message) {
+  public final void notifyUpdate(final Observer observer, final String message) {
     observer.update(message);
   }
   @Override
-  public void attach(Observer observer) {
+  public final void attach(final Observer observer) {
     observers.add(observer);
   }
   @Override
-  public void detach(Observer observer) {
+  public final void detach(final Observer observer) {
     observers.remove(observer);
   }
 

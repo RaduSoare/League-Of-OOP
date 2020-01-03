@@ -4,11 +4,21 @@ import utility.FileLineWriter;
 
 public class GreatMagician implements Observer {
 
-  public static String pathOut;
+  private static String pathOut;
+
+
+  public static String getPathOut() {
+    return pathOut;
+  }
+
+
+  public static void setPathOut(String pathOut) {
+    GreatMagician.pathOut = pathOut;
+  }
+
 
   @Override
-  public void update(String message) {
-    //System.out.println(message);
+  public final void update(final String message) {
     FileLineWriter.writeLine(message, pathOut);
 
   }

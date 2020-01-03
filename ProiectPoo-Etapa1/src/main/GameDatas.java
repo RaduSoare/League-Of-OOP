@@ -33,13 +33,13 @@ public class GameDatas {
 
 
 
-  public ArrayList<LinkedList<Angel>> getAngels() {
+  public final ArrayList<LinkedList<Angel>> getAngels() {
     return angels;
   }
 
 
 
-  public void setAngels(ArrayList<LinkedList<Angel>> angels) {
+  public final void setAngels(ArrayList<LinkedList<Angel>> angels) {
     this.angels = angels;
   }
 

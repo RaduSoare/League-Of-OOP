@@ -2,7 +2,7 @@ package observer;
 
 public interface Observable {
 
-  public void attach(Observer observer);
-  public void detach(Observer observer);
-  public void notifyUpdate(Observer observer, String message);
+  void attach(Observer observer);
+  void detach(Observer observer);
+  void notifyUpdate(Observer observer, String message);
 }

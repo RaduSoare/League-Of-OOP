@@ -87,10 +87,6 @@ public class Pyromancer extends Player  {
         * (igniteModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
 
     if (enemy.getOvertimeDuration() == 0) {
-      // din etapa 1
-  /*    int periodicIgnite = Math.round((PConstants.IGNITE_OVERTIME
-          + PConstants.IGNITE_OVERTIME_BONUS * this.getLevel())
-          * landModifier(getCurrentTerrain()) * igniteModifier); */
       int periodicIgniteWithoutModifiers = Math.round((PConstants.IGNITE_OVERTIME
           + PConstants.IGNITE_OVERTIME_BONUS * this.getLevel())
           * landModifier(getCurrentTerrain()));
@@ -105,7 +101,7 @@ public class Pyromancer extends Player  {
   }
 
   @Override
-  public void getBuff(Angel angel) {
+  public final void getBuff(final Angel angel) {
     angel.buff(this);
   }
 

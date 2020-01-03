@@ -1,3 +1,4 @@
+
 package player;
 
 import angels.Angel;
@@ -91,7 +92,7 @@ public class Knight extends Player  {
       final float executeModifier) {
 
     float modifiers = executeModifier + getStrategyDamageModifier() + getAngelDamageModifier();
-    if(executeModifier == 1f) {
+    if (executeModifier == 1f) {
       modifiers = 1f;
     }
 
@@ -121,11 +122,8 @@ public class Knight extends Player  {
   }
 
   @Override
-  public void getBuff(Angel angel) {
+  public final void getBuff(final Angel angel) {
     angel.buff(this);
   }
-
-
-
 
 }

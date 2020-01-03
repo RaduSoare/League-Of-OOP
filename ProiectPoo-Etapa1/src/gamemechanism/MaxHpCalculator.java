@@ -8,19 +8,19 @@ import player.Player;
 
 public class MaxHpCalculator {
 
-  public int computeMaxHpP(Player x) {
+  public final int computeMaxHpP(final Player x) {
     return PConstants.PYRO_HP + x.getLevel() * PConstants.PYRO_BONUS_HP;
   }
 
-  public int computeMaxHpK(Player x) {
+  public final int computeMaxHpK(final Player x) {
     return KConstants.KNIGHT_HP + x.getLevel() * KConstants.KNIGHT_BONUS_HP;
   }
 
-  public int computeMaxHpW(Player x) {
+  public final int computeMaxHpW(final Player x) {
     return WConstants.WIZARD_HP + x.getLevel() * WConstants.WIZARD_BONUS_HP;
   }
 
-public int computeMaxHpR(Player x) {
+public final int computeMaxHpR(final Player x) {
   return RConstants.ROGUE_HP + x.getLevel() * RConstants.ROGUE_BONUS_HP;
   }
 }

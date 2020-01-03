@@ -8,7 +8,7 @@ public class KnightStrategy implements PlayerStrategy {
 
 
   @Override
-  public void damageStrategy(Player player) {
+  public final void damageStrategy(final Player player) {
 
     player.setHP(Math.round(player.getHP() * KnightStrategyConstants.DS_HP_MODIFIER));
     player.setStrategyDamageModifier(player.getStrategyDamageModifier()
@@ -16,14 +16,14 @@ public class KnightStrategy implements PlayerStrategy {
   }
 
   @Override
-  public void hpStrategy(Player player) {
+  public final void hpStrategy(final Player player) {
     player.setHP(Math.round(player.getHP() * KnightStrategyConstants.HS_HP_MODIFIER));
     player.setStrategyDamageModifier(player.getStrategyDamageModifier()
         + KnightStrategyConstants.HS_DAMAGE_MODIFIER);
   }
 
   @Override
-  public void strategySelection(Player player) {
+  public final void strategySelection(final Player player) {
     int maxLevelHp = KConstants.KNIGHT_HP + player.getLevel() * KConstants.KNIGHT_BONUS_HP;
     if (KnightStrategyConstants.DS_LOW_HP_LIMIT * maxLevelHp < player.getHP()
         && player.getHP() < KnightStrategyConstants.DS_HIGH_HP_LIMIT * maxLevelHp) {

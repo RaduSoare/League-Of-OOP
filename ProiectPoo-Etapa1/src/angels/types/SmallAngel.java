@@ -10,52 +10,52 @@ import player.Wizard;
 
 public class SmallAngel extends Angel {
 
-  public SmallAngel(int xCoordinate, int yCoordinate, String type) {
+  public SmallAngel(final int xCoordinate, final int yCoordinate, final String type) {
     super(xCoordinate, yCoordinate, type);
   }
-  GreatMagician greatMagician = new GreatMagician();
+  private GreatMagician greatMagician = new GreatMagician();
   @Override
-  public void buff(Pyromancer pyromancer) {
-    if(pyromancer.getHP() <= 0) {
+  public final void buff(final Pyromancer pyromancer) {
+    if (pyromancer.getHP() <= 0) {
       return;
     }
     pyromancer.setAngelDamageModifier(pyromancer.getAngelDamageModifier()
-        + AngelsConstants.smallAngelBuffDmgP);
-    pyromancer.setHP(pyromancer.getHP() + AngelsConstants.smallAngelBuffHpP);
+        + AngelsConstants.SMALL_ANGEL_BUFF_DMG_P);
+    pyromancer.setHP(pyromancer.getHP() + AngelsConstants.SMALL_ANGEL_BUFF_HP_P);
     this.notifyUpdate(greatMagician, "SmallAngel helped Pyromancer " + pyromancer.getIndex());
   }
 
   @Override
-  public void buff(Knight knight) {
-    if(knight.getHP() <= 0) {
+  public final void buff(final Knight knight) {
+    if (knight.getHP() <= 0) {
       return;
     }
     knight.setAngelDamageModifier(knight.getAngelDamageModifier()
-        + AngelsConstants.smallAngelBuffDmgK);
-    knight.setHP(knight.getHP() + AngelsConstants.smallAngelBuffHpK);
+        + AngelsConstants.SMALL_ANGEL_BUFF_DMG_K);
+    knight.setHP(knight.getHP() + AngelsConstants.SMALL_ANGEL_BUFF_HP_K);
     this.notifyUpdate(greatMagician, "SmallAngel helped Knight " + knight.getIndex());
   }
 
   @Override
-  public void buff(Wizard wizard) {
-    if(wizard.getHP() <= 0) {
+  public final void buff(final Wizard wizard) {
+    if (wizard.getHP() <= 0) {
       return;
     }
     wizard.setAngelDamageModifier(wizard.getAngelDamageModifier()
-        + AngelsConstants.smallAngelBuffDmgW);
-    wizard.setHP(wizard.getHP() + AngelsConstants.smallAngelBuffHpW);
+        + AngelsConstants.SMALL_ANGEL_BUFF_DMG_W);
+    wizard.setHP(wizard.getHP() + AngelsConstants.SMALL_ANGEL_BUFF_HP_W);
     this.notifyUpdate(greatMagician, "SmallAngel helped Wizard " + wizard.getIndex());
 
   }
 
   @Override
-  public void buff(Rogue rogue) {
-    if(rogue.getHP() <= 0) {
+  public final void buff(final Rogue rogue) {
+    if (rogue.getHP() <= 0) {
       return;
     }
     rogue.setAngelDamageModifier(rogue.getAngelDamageModifier()
-        + AngelsConstants.smallAngelBuffDmgR);
-    rogue.setHP(rogue.getHP() + AngelsConstants.smallAngelBuffHpR);
+        + AngelsConstants.SMALL_ANGEL_BUFF_DMG_R);
+    rogue.setHP(rogue.getHP() + AngelsConstants.SMALL_ANGEL_BUFF_HP_R);
     this.notifyUpdate(greatMagician, "SmallAngel helped Rogue " + rogue.getIndex());
 
   }

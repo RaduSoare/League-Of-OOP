@@ -4,7 +4,7 @@ import player.Player;
 
 public interface PlayerStrategy {
 
-  public void damageStrategy(Player player);
-  public void hpStrategy(Player player);
-  public void strategySelection(Player player);
+  void damageStrategy(Player player);
+  void hpStrategy(Player player);
+  void strategySelection(Player player);
 }

@@ -14,24 +14,26 @@ public class PlayersMovement {
 
       Player tempPlayer = gameDatas.getPlayers().get(currentPlayer);
       if (!tempPlayer.isParalysed()) {
+      //  if(tempPlayer.getxCoordinate() - 1 >= 0 && tempPlayer.getyCoordinate() - 1 >= 0) {
 
-        if (gameDatas.getDirections()[i] == 'U') {
-           tempPlayer.setxCoordinate(tempPlayer.getxCoordinate() - 1);
-           tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
-               [tempPlayer.getyCoordinate()].getTerrainType());
-        } else if (gameDatas.getDirections()[i] == 'D') {
-          tempPlayer.setxCoordinate(tempPlayer.getxCoordinate() + 1);
-          tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
-              [tempPlayer.getyCoordinate()].getTerrainType());
-        } else if (gameDatas.getDirections()[i] == 'L') {
-          tempPlayer.setyCoordinate(tempPlayer.getyCoordinate() - 1);
-          tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
-              [tempPlayer.getyCoordinate()].getTerrainType());
-        } else if (gameDatas.getDirections()[i] == 'R') {
-          tempPlayer.setyCoordinate(tempPlayer.getyCoordinate() + 1);
-          tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
-              [tempPlayer.getyCoordinate()].getTerrainType());
-        }
+          if (gameDatas.getDirections()[i] == 'U') {
+             tempPlayer.setxCoordinate(tempPlayer.getxCoordinate() - 1);
+             tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
+                 [tempPlayer.getyCoordinate()].getTerrainType());
+          } else if (gameDatas.getDirections()[i] == 'D') {
+            tempPlayer.setxCoordinate(tempPlayer.getxCoordinate() + 1);
+            tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
+                [tempPlayer.getyCoordinate()].getTerrainType());
+          } else if (gameDatas.getDirections()[i] == 'L') {
+            tempPlayer.setyCoordinate(tempPlayer.getyCoordinate() - 1);
+            tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
+                [tempPlayer.getyCoordinate()].getTerrainType());
+          } else if (gameDatas.getDirections()[i] == 'R') {
+            tempPlayer.setyCoordinate(tempPlayer.getyCoordinate() + 1);
+            tempPlayer.setCurrentTerrain(map[tempPlayer.getxCoordinate()]
+                [tempPlayer.getyCoordinate()].getTerrainType());
+          }
+      //  }
 
       }
       currentPlayer++;
@@ -49,11 +51,11 @@ public class PlayersMovement {
     }
 
     for (int i = 0; i < gameDatas.getNumberOfPlayers(); i++) {
-      if (gameDatas.getPlayers().get(i).getHP() > 0) {
+     // if (gameDatas.getPlayers().get(i).getHP() > 0) {
         Player tempPlayer = gameDatas.getPlayers().get(i);
         map[tempPlayer.getxCoordinate()][tempPlayer.getyCoordinate()].getPlayersOnTerrain().
         add(tempPlayer);
-      }
+    //  }
     }
   }
 

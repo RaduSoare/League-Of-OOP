@@ -16,6 +16,7 @@ public final class Constants {
   public static final int XP_FORMULA_TERM2 = 40;
   public static final float HP_BONUS_FORMULA = 0.3f;
   public static final int CRITICAL_INTERVAL = 3;
+  public static final float APPROXIMATION_HELPER = 0.0001f;
 
   public static final String PYRO_TYPE = "pyromancer";
   public static final String WIZARD_TYPE = "wizard";

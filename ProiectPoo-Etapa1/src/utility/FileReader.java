@@ -72,21 +72,19 @@ public class FileReader {
       }
 
 
-      for(int i = 0; i < numberOfRounds; i++) {
+      for (int i = 0; i < numberOfRounds; i++) {
         LinkedList<Angel> tempListOfAngels = new LinkedList<Angel>();
         int tempNoOfAngels = fs.nextInt();
-        for(int j = 1; j <= tempNoOfAngels; j++) {
+        for (int j = 1; j <= tempNoOfAngels; j++) {
           String[] angel = fs.nextWord().split(",");
 
           AngelFactory angelFactory = AngelFactory.getInstance();
-          tempListOfAngels.add(angelFactory.createAngel(Integer.parseInt(angel[1]), Integer.parseInt(angel[2]),
-              angel[0]));
+          tempListOfAngels.add(angelFactory.createAngel(Integer.parseInt(angel[1]),
+              Integer.parseInt(angel[2]), angel[0]));
         }
         angels.add(i, tempListOfAngels);
 
       }
-
-
 
     } catch (Exception e1) {
         e1.printStackTrace();

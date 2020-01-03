@@ -79,6 +79,7 @@ public class Wizard extends Player {
         * landModifier(getCurrentTerrain());
 
     int drain = Math.round(percent * baseHp);
+
     return drain;
   }
 
@@ -87,8 +88,8 @@ public class Wizard extends Player {
     int deflect = Math.round(this.getDamageTaken() * (WConstants.DEFLECT_PERCENT
         + WConstants.DEFLECT_PERCENT_BONUS * this.getLevel()));
     deflect = Math.round(deflect
-        * (deflectModifier + getStrategyDamageModifier() + getAngelDamageModifier())
-        * landModifier(getCurrentTerrain()));
+        * (deflectModifier + getStrategyDamageModifier() + getAngelDamageModifier()
+        - Constants.APPROXIMATION_HELPER) * landModifier(getCurrentTerrain()));
 
     //System.out.println((int)(deflect - 0.0001f));
     //return (int)(deflect - 0.0001f);
@@ -97,7 +98,7 @@ public class Wizard extends Player {
   }
 
   @Override
-  public void getBuff(Angel angel) {
+  public final void getBuff(final Angel angel) {
     angel.buff(this);
   }
 

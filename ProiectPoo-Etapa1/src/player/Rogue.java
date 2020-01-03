@@ -98,8 +98,10 @@ public class Rogue extends Player {
 
   public final int getParalysis(final float paralysisModifier) {
 
+
     return Math.round(getParalysisWithoutModifiers()
-        * (paralysisModifier + getStrategyDamageModifier() + getAngelDamageModifier()));
+        * (paralysisModifier + getStrategyDamageModifier() + getAngelDamageModifier()
+        - Constants.APPROXIMATION_HELPER));
   }
 
   public final float getTotalWithoutModifiers() {
@@ -118,7 +120,8 @@ public class Rogue extends Player {
     if (this.getCurrentTerrain() == 'W') {
        enemy.setParalysed(true);
        enemy.setOvertimeDamage(Math.round((RConstants.PARALYSIS_DAMAGE
-           + (RConstants.PARALYSIS_DAMAGE_BONUS * this.getLevel())) * (paralysisModifier + getStrategyDamageModifier())
+           + (RConstants.PARALYSIS_DAMAGE_BONUS * this.getLevel()))
+           * (paralysisModifier + getStrategyDamageModifier())
            * landModifier(getCurrentTerrain())));
        enemy.setOvertimeDuration(RConstants.PARALYSIS_OVERTIME * 2);
 
@@ -153,8 +156,7 @@ public class Rogue extends Player {
   }
 
   @Override
-  public void getBuff(Angel angel) {
-    // TODO Auto-generated method stub
+  public final void getBuff(final Angel angel) {
     angel.buff(this);
   }
 

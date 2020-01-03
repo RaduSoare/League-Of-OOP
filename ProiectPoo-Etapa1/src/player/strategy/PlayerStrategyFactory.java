@@ -2,9 +2,9 @@ package player.strategy;
 
 public class PlayerStrategyFactory {
 
-  public PlayerStrategy createPlayerStrategy(String playerType) {
+  public final PlayerStrategy createPlayerStrategy(final String playerType) {
 
-    switch(playerType) {
+    switch (playerType) {
     case "K":
       return new KnightStrategy();
     case "P":

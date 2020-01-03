@@ -4,9 +4,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileLineWriter {
+public final class FileLineWriter {
 
-  public final static void writeLine(final String line, final String pathOut ) {
+  private FileLineWriter() {
+
+  }
+
+
+
+  public static void writeLine(final String line, final String pathOut) {
 
     try {
       BufferedWriter writer = new BufferedWriter(new FileWriter(pathOut, true));
