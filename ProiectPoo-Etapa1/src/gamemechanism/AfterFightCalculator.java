@@ -15,14 +15,15 @@ public class AfterFightCalculator {
     LevelUpCalculator levelUpCalculator = new LevelUpCalculator();
     XpCalculator xpCalculator = new XpCalculator();
 
-    // setez damage-ul primit de fiecare
+    // seteaza damage-ul primit de fiecare
     player1.setDamageTaken(player2.getDamageGiven());
     player2.setDamageTaken(player1.getDamageGiven());
 
-    // calculez HP-ul dupa lupta
+    // calculeza HP-ul dupa lupta
     applyDamage(player1, player2, greatMagician);
     applyDamage(player2, player1, greatMagician);
 
+    // decide invingatorul
     Player winner = null, loser = null;
     if (player1.getHP() <= 0) {
       winner = player2;
@@ -31,13 +32,16 @@ public class AfterFightCalculator {
       winner = player1;
       loser = player2;
     }
-
-   if ((winner != null || loser != null) && winner.getHP() > 0) {
+    // calculeaza noua experienta si noul level dupa lupta, daca unul dintre jucatori castiga
+    if ((winner != null || loser != null) && winner.getHP() > 0) {
       xpCalculator.computeXp(winner, loser);
       levelUpCalculator.computeLevelUp(winner);
     }
-   }
 
+   }
+  /*
+   * Scade din HP-ul primul jucator, damage-ul primit de la cel de-al doilea.
+   */
   public final void applyDamage(final Player player1, final Player player2,
       final GreatMagician greatMagician) {
 

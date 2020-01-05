@@ -8,6 +8,9 @@ import player.Player;
 
 public class MaxHpCalculator {
 
+  /*
+   * Calculeaza HP-ul maxim pe care il poate avea un jucator in functie de nivel.
+   */
   public final int computeMaxHpP(final Player x) {
     return PConstants.PYRO_HP + x.getLevel() * PConstants.PYRO_BONUS_HP;
   }

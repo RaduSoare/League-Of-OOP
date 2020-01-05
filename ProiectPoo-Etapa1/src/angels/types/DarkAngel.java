@@ -10,11 +10,14 @@ import player.Wizard;
 
 public class DarkAngel extends Angel {
 
+  private GreatMagician greatMagician = new GreatMagician();
   public DarkAngel(final int xCoordinate, final int yCoordinate, final String type) {
     super(xCoordinate, yCoordinate, type);
-
+    this.attach(greatMagician);
   }
-  private GreatMagician greatMagician = new GreatMagician();
+  /*
+   * Modifica HP-ul jucatorului in functie de rasa.
+   */
   @Override
   public final void buff(final Pyromancer pyromancer) {
     if (pyromancer.getHP() <= 0) {

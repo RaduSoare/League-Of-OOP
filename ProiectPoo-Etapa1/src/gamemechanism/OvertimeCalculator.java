@@ -5,6 +5,9 @@ import player.Player;
 
 public class OvertimeCalculator {
 
+  /*
+   * Scade din HP-ul jucatorilor DOT-ul primit anterior, daca este cazul.
+   */
   public final void computeOvertimeValues(final Terrain[][] map, final int i, final int j) {
 
     for (Player x : map[i][j].getPlayersOnTerrain()) {

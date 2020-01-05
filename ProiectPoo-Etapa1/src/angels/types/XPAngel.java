@@ -11,11 +11,13 @@ import player.Wizard;
 
 public class XPAngel extends Angel {
 
-  public XPAngel(final int xCoordinate, final int yCoordinate, final String type) {
-    super(xCoordinate, yCoordinate, type);
-  }
   private LevelUpCalculator levelUpCalc = new LevelUpCalculator();
   private GreatMagician greatMagician = new GreatMagician();
+  public XPAngel(final int xCoordinate, final int yCoordinate, final String type) {
+    super(xCoordinate, yCoordinate, type);
+    this.attach(greatMagician);
+  }
+
 
   @Override
   public final void buff(final Pyromancer pyromancer) {

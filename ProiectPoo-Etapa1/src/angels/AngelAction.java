@@ -12,6 +12,10 @@ public class AngelAction {
   public AngelAction() {
   }
 
+  /*
+   * Ingerii din runda respectiva apar pe harta si aplica buff-ul pentru fiecare jucator
+   * din terenul in care se afla.
+   */
   public final void buffPlayers(final GameDatas gameDatas, final int round, final Terrain[][] map,
       final GreatMagician greatMagician) {
 

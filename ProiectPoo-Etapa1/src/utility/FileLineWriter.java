@@ -11,7 +11,9 @@ public final class FileLineWriter {
   }
 
 
-
+  /*
+   * Scrie in fisier linia primita ca parametru.
+   */
   public static void writeLine(final String line, final String pathOut) {
 
     try {

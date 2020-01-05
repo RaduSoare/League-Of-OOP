@@ -11,10 +11,14 @@ import utility.FullNameProvider;
 
 public class Dracula extends Angel {
 
+  private GreatMagician greatMagician = new GreatMagician();
   public Dracula(final int xCoordinate, final int yCoordinate, final String type) {
     super(xCoordinate, yCoordinate, type);
+    this.attach(greatMagician);
   }
-  private GreatMagician greatMagician = new GreatMagician();
+  /*
+   * Modifica atat modificatorii de rasa cat si HP-ul jucatorului.
+   */
   @Override
   public final void buff(final Pyromancer pyromancer) {
     if (pyromancer.getHP() <= 0) {

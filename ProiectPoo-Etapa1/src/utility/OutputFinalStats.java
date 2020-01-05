@@ -13,25 +13,6 @@ public final class OutputFinalStats {
 
   }
   /*
-   * afiseaza proprietatile jucatorilor la Stdout
-   * nefolosit in codul pentru prima tema
-   * pastrat pentru debugging in etapa 2
-   */
-  public static void showStats(final GameDatas gameDatas) {
-    System.out.println("~~ Results ~~");
-   // int i = 0;
-    for (Player x : gameDatas.getPlayers()) {
-      if (x.getHP() > 0) {
-        System.out.println(x.getType() + " " + x.getLevel() + " " + x.getXP()
-        + " " + x.getHP() + " " + x.getxCoordinate() + " " + x.getyCoordinate());
-      } else {
-        System.out.println(x.getType() + " " + "dead");
-      }
-     // i++;
-    }
-
-  }
-  /*
    * scrie proprietatile jucatorilor in fisierul de iesire
    */
 

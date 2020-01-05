@@ -10,11 +10,13 @@ import player.Wizard;
 
 public class GoodBoy extends Angel {
 
+  private GreatMagician greatMagician = new GreatMagician();
   public GoodBoy(final int xCoordinate, final int yCoordinate, final String type) {
     super(xCoordinate, yCoordinate, type);
+    this.attach(greatMagician);
 
   }
-  private GreatMagician greatMagician = new GreatMagician();
+
   @Override
   public final void buff(final Pyromancer pyromancer) {
     if (pyromancer.getHP() <= 0) {

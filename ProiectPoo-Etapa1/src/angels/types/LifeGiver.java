@@ -15,6 +15,7 @@ public class LifeGiver extends Angel {
 
   public LifeGiver(final int xCoordinate, final int yCoordinate, final String type) {
     super(xCoordinate, yCoordinate, type);
+    this.attach(greatMagician);
   }
 
   @Override

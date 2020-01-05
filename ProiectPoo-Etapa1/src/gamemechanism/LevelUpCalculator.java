@@ -7,6 +7,9 @@ import utility.FullNameProvider;
 
 public class LevelUpCalculator {
 
+  /*
+   * Calculeaza noul nivel al jucatorului, daca XP-ul permite acest lucru.
+   */
   public final void computeLevelUp(final Player player) {
     HpCalculator hpCalculator = new HpCalculator();
     GreatMagician greatMagician = new GreatMagician();
@@ -32,7 +35,9 @@ public class LevelUpCalculator {
 
 
   }
-
+  /*
+   * Returneaza experienta necesara avansarii la nivelul urmator.
+   */
   public final int xpForNextLevel(final int oldXp) {
 
     int tempXp = Constants.LEVEL_STEP;
