@@ -8,9 +8,9 @@ public class XpCalculator {
   /*
    * Calculeaza XP-ul jucatorului ce a invins intr-o lupta.
    */
-  public final void computeXp(final Player winner, final Player loser) {
+  public final void computeXp(final Player winner, final int level) {
     int newXpWinner = winner.getXP() + Math.max(0, Constants.XP_FORMULA_TERM1
-        - (winner.getLevel() - loser.getLevel()) * Constants.XP_FORMULA_TERM2);
+        - (winner.getLevel() - level) * Constants.XP_FORMULA_TERM2);
     winner.setXP(newXpWinner);
   }
 }

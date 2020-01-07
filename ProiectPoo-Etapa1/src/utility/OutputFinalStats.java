@@ -12,6 +12,7 @@ public final class OutputFinalStats {
   private OutputFinalStats() {
 
   }
+
   /*
    * scrie proprietatile jucatorilor in fisierul de iesire
    */

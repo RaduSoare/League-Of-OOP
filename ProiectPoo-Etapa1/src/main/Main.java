@@ -1,3 +1,4 @@
+
 package main;
 
 
@@ -20,6 +21,7 @@ public final class Main {
     GameLogic gameLogic = new GameLogic();
     gameLogic.gameEvolution(gameDatas, args[0], args[1]);
     OutputFinalStats.writeStatsInFile(args[0], args[1], gameDatas);
+
 
   }
 

@@ -30,9 +30,7 @@ public class GameLogic {
 
 
     for (int round = 0; round < gameDatas.getNumberOfRounds(); round++) {
-    //  System.out.println("~~ Round " + (round + 1) + " ~~");
       FileLineWriter.writeLine("~~ Round " + (round + 1) + " ~~", pathOut);
-
      // se realizeaza miscarea jucatorilor pe harta
      playerMovement.movePlayers(gameDatas, round, map);
 
@@ -61,11 +59,9 @@ public class GameLogic {
            }
 
            if (player1.getHP() > 0 && player2.getHP() > 0) {
-         //    System.out.println("Damage before fight:" + player1.getHP() + " " + player2.getHP());
              player1.fightsWith(player2);
              player2.fightsWith(player1);
              afterFightCalculator.afterFightStatus(player1, player2, map, gameDatas, greatMagician);
-         //   System.out.println("Damage after fight:" + player1.getHP() + " " + player2.getHP());
 
 
            }

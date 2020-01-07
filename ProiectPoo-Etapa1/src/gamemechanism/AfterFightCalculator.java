@@ -19,9 +19,26 @@ public class AfterFightCalculator {
     player1.setDamageTaken(player2.getDamageGiven());
     player2.setDamageTaken(player1.getDamageGiven());
 
+
     // calculeza HP-ul dupa lupta
     applyDamage(player1, player2, greatMagician);
     applyDamage(player2, player1, greatMagician);
+
+    // caz omor reciproc
+    if(player1.getHP() <= 0 && player2.getHP() <= 0) {
+      int player2OldLevel = player2.getLevel();
+
+      xpCalculator.computeXp(player2, player1.getLevel());
+      levelUpCalculator.computeLevelUp(player2);
+
+      xpCalculator.computeXp(player1, player2OldLevel);
+      levelUpCalculator.computeLevelUp(player1);
+
+      player1.setHP(0);
+      player2.setHP(0);
+      return;
+    }
+
 
     // decide invingatorul
     Player winner = null, loser = null;
@@ -33,8 +50,8 @@ public class AfterFightCalculator {
       loser = player2;
     }
     // calculeaza noua experienta si noul level dupa lupta, daca unul dintre jucatori castiga
-    if ((winner != null || loser != null) && winner.getHP() > 0) {
-      xpCalculator.computeXp(winner, loser);
+    if ((winner != null || loser != null)) {
+      xpCalculator.computeXp(winner, loser.getLevel());
       levelUpCalculator.computeLevelUp(winner);
     }
 
